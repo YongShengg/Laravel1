@@ -26,13 +26,13 @@ Route::post('/login', [AuthManager::class, 'loginPost'])->name('login.post');
 Route::get('/registration', [AuthManager::class, 'registration'])->name('registration');
 Route::post('/registration', [AuthManager::class, 'registrationPost'])->name('registration.post');
 
-Route::get('/adminLogin', [AuthManager::class, 'adminLogin'])->name('adminLogin');
-Route::post('/adminLogin', [AuthManager::class, 'adminLoginPost'])->name('adminLogin.post');
+Route::get('/adminLogin', [AdminAuthManager::class, 'adminLogin'])->name('adminLogin');
+Route::post('/adminLogin', [AdminAuthManager::class, 'adminLoginPost'])->name('adminLogin.post');
 
-Route::get('/adminRegistration', [AuthManager::class, 'adminRegistration'])->name('adminRegistration');
-Route::post('/adminRegistration', [AuthManager::class, 'adminRegistrationPost'])->name('adminRegistration.post');
+Route::get('/adminRegistration', [AdminAuthManager::class, 'adminRegistration'])->name('adminRegistration');
+Route::post('/adminRegistration', [AdminAuthManager::class, 'adminRegistrationPost'])->name('adminRegistration.post');
 
-Route::get('/adminDashboard', [AdminHome::class, 'adminDashboard'])->name('adminDashboard');
+
 
 //check if the user is logged in
 Route::group(['middleware' => 'auth'], function(){
@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/userHistory/{id}', [UserHome::class, 'userHistoryPost'])->name('userHistory.post');
 });
 
-Route::group(['middleware' => 'auth'], function(){
-    
+Route::group(['middleware' => 'admin'], function(){
+    Route::get('/adminDashboard', [AdminHome::class, 'adminDashboard'])->name('adminDashboard');
 });
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
