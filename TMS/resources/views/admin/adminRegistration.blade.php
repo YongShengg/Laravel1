@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('/adminLayout')
 @section('title', 'Registration')
 @section('content')
     <div class="container">
