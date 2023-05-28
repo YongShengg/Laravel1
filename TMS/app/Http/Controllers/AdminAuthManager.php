@@ -15,6 +15,8 @@ class AdminAuthManager extends Controller
             return redirect(route('adminDashboard'));
         }
         return view('admin/adminLogin');
+
+        // return redirect(route('adminDashboard'));
     }
 
     function adminRegistration(){
@@ -31,10 +33,13 @@ class AdminAuthManager extends Controller
         ]);
         
         $credentials = $request->only('email', 'password');
-        if(Auth::attempt($credentials)){
+        $admin = Admin::where('email', $credentials['email'])->first();
+
+        if ($admin && Auth::guard('admin')->attempt($credentials)) {
             return redirect()->intended(route('adminDashboard'));
         }
-        return redirect(route('adminLogin'))->with("error", "Not Valid");
+
+        return redirect(route('adminLogin'))->with("error", "Invalid credentials");
     }
 
     function adminRegistrationPost(Request $request){

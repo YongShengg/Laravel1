@@ -18,11 +18,17 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('admin')->check()) {
-            return $next($request);
+        // if (Auth::guard('admin')->check()) {
+        //     return $next($request);
+        // }
+
+        // abort(403, 'Unauthorized');
+
+        if (Auth::check() && Auth::admin()->role !== 'admin') {
+            return redirect('/');
         }
 
-        abort(403, 'Unauthorized');
+        return $next($request);
     }   
 
 }

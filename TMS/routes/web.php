@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\UserHome;
 use App\Http\Controllers\AdminHome;
+use App\Http\Controllers\AdminAuthManager;
 //\app\Http\Controllers\AuthManager
 /*
 |--------------------------------------------------------------------------
@@ -52,5 +53,10 @@ Route::group(['middleware' => 'auth'], function(){
 
 Route::group(['middleware' => 'admin'], function(){
     Route::get('/adminDashboard', [AdminHome::class, 'adminDashboard'])->name('adminDashboard');
+
+    Route::get('/adminOrderQuote', [AdminHome::class, 'adminOrderQuote'])->name('adminOrderQuote');
+    Route::post('/adminOrderQuote', [AdminHome::class, 'adminOrderQuotePost'])->name('adminOrderQuote.post');
+
+    Route::get('/adminOrderDetail/{load_id}', [AdminHome::class, 'adminOrderDetail'])->name('adminOrderDetail');
 });
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
