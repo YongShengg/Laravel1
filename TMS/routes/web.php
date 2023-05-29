@@ -51,7 +51,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/userHistory/{id}', [UserHome::class, 'userHistoryPost'])->name('userHistory.post');
 });
 
-Route::group(['middleware' => 'admin'], function(){
+Route::group(['middleware' => ['auth:admin']], function () {
+
     Route::get('/adminDashboard', [AdminHome::class, 'adminDashboard'])->name('adminDashboard');
 
     Route::get('/adminOrderQuote', [AdminHome::class, 'adminOrderQuote'])->name('adminOrderQuote');

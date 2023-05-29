@@ -4,13 +4,13 @@
 
 <div class="container">
     <div class="col-md-12 col-lg-12">
-        <h4 class="mb-3">User Info</h4>
+        <h4 class="mb-3">Order ID {{ $order->load_id }}</h4>
         <div class="row g-3">
 
             <div class="col-12">
             <label for="username" class="form-label">Username</label>
             <div class="input-group has-validation">
-                <input type="text" class="form-control" id="username" placeholder="" value="{{ $order->load_id }}" disabled>
+                <input type="text" class="form-control" id="username" placeholder="" value="{{ $order->name }}" disabled>
             <div class="invalid-feedback">
                 Your username is required.
                 </div>

@@ -32,7 +32,9 @@ class AdminHome extends Controller
     }
 
     function adminOrderDetail($loadId){
-        $order = UserOrder::where('load_id', $loadId)->first();
+        
+        $order = UserOrder::join('users', 'users.id', 'users_order.user_id')
+        ->where('load_id', $loadId)->first();
 
         return view('admin/adminOrderDetail', ['order' => $order]);
     }
