@@ -13,8 +13,8 @@
                             <tr>
                                 <th scope="col">#ORDER ID</th>
                                 <th scope="col">Progress Status</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
+                                <th scope="col">Price Quote Status</th>
+                                <th scope="col">Payment Progress</th>
                                 <th scope="col">Handle</th>
                                 <th scope="col">Handle</th>
                                 <th scope="col">Handle</th>
@@ -45,7 +45,21 @@
                                     <span class="badge bg-dark">Unknown Status</span>
                                     @endif
                                 </td>
-                                <td>Otto</td>
+                                <td>
+                                    @if ($item['price_quote_status'] == 0)
+                                    <span class="badge bg-secondary">Not Sent</span>
+                                    @elseif ($item['price_quote_status'] == 1)
+                                    <span class="badge bg-primary">Sent</span>
+                                    @elseif ($item['price_quote_status'] == 2)
+                                    <span class="badge bg-warning text-dark">Accepted</span>
+                                    @elseif ($item['price_quote_status'] == 3)
+                                    <span class="badge bg-danger">Rejected</span>
+                                    @elseif ($item['price_quote_status'] == 4)
+                                    <span class="badge bg-dark">Expired</span>
+                                    @else
+                                    <span class="badge bg-dark">Unknown Status</span>
+                                    @endif
+                                </td>
                                 <td>@mdo</td>
                                 <td>@mdo</td>
                                 <td>@mdo</td>

@@ -8,7 +8,7 @@
         </svg>
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-        <li class="nav-item"><a class="nav-link" href="index.html">
+        <li class="nav-item"><a class="nav-link" href="/adminDashboard">
             <svg class="nav-icon">
             <use xlink:href="dist/vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
             </svg> Dashboard</a></li>
@@ -17,10 +17,10 @@
             <svg class="nav-icon">
             <use xlink:href="dist/vendors/@coreui/icons/svg/free.svg#cil-drop"></use>
             </svg> Colors</a></li>
-        <li class="nav-item"><a class="nav-link" href="typography.html">
+        <li class="nav-item"><a class="nav-link" href="{{route('adminOrderQuote')}}">
             <svg class="nav-icon">
             <use xlink:href="dist/vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
-            </svg> Typography</a></li>
+            </svg> Order Price</a></li>
         <li class="nav-title">Components</li>
         
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">

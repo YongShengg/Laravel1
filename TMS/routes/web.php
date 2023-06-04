@@ -30,8 +30,7 @@ Route::post('/registration', [AuthManager::class, 'registrationPost'])->name('re
 Route::get('/adminLogin', [AdminAuthManager::class, 'adminLogin'])->name('adminLogin');
 Route::post('/adminLogin', [AdminAuthManager::class, 'adminLoginPost'])->name('adminLogin.post');
 
-Route::get('/adminRegistration', [AdminAuthManager::class, 'adminRegistration'])->name('adminRegistration');
-Route::post('/adminRegistration', [AdminAuthManager::class, 'adminRegistrationPost'])->name('adminRegistration.post');
+
 
 
 
@@ -53,11 +52,15 @@ Route::group(['middleware' => 'auth'], function(){
 
 Route::group(['middleware' => ['auth:admin']], function () {
 
+    Route::get('/adminRegistration', [AdminAuthManager::class, 'adminRegistration'])->name('adminRegistration');
+    Route::post('/adminRegistration', [AdminAuthManager::class, 'adminRegistrationPost'])->name('adminRegistration.post');
+
     Route::get('/adminDashboard', [AdminHome::class, 'adminDashboard'])->name('adminDashboard');
 
     Route::get('/adminOrderQuote', [AdminHome::class, 'adminOrderQuote'])->name('adminOrderQuote');
     Route::post('/adminOrderQuote', [AdminHome::class, 'adminOrderQuotePost'])->name('adminOrderQuote.post');
 
     Route::get('/adminOrderDetail/{load_id}', [AdminHome::class, 'adminOrderDetail'])->name('adminOrderDetail');
+    Route::post('/adminOrderDetail/{load_id}', [AdminHome::class, 'adminOrderDetailPost'])->name('adminOrderDetail.post');
 });
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');

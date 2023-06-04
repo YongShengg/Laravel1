@@ -38,4 +38,22 @@ class AdminHome extends Controller
 
         return view('admin/adminOrderDetail', ['order' => $order]);
     }
+
+    function adminOrderDetailPost(Request $request, $loadId){
+
+        $data = $request->validate([
+            'price_quote' => 'required'
+
+        ]);
+        $vehicleData = [
+            'price_quote' => $data['price_quote'],
+            'price_quote_status' => 1
+        ];
+
+        $userOrder = UserOrder::where('load_id', $loadId)->first();
+        // Save the vehicle data to the database
+        $userOrder->update($vehicleData);
+
+        return redirect()->back()->with('success', 'successfully.');
+    }
 }

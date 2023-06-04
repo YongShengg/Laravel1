@@ -6,28 +6,22 @@
     <div class="col-md-12 col-lg-12">
         <h4 class="mb-3">Order ID {{ $order->load_id }}</h4>
         <div class="row g-3">
-
-            <div class="col-12">
-            <label for="username" class="form-label">Username</label>
-            <div class="input-group has-validation">
-                <input type="text" class="form-control" id="username" placeholder="" value="{{ $order->name }}" disabled>
-            <div class="invalid-feedback">
-                Your username is required.
-                </div>
+            <div class="col-md-6">
+                <div class="col-12">
+                    <label for="username" class="form-label">Username</label>
+                    <div class="input-group has-validation">
+                        <input type="text" class="form-control" id="username" placeholder="" value="{{ $order->name }}" disabled>
+                    </div>
+                    </div>
+                    <div class="col-12">
+                    <label for="email" class="form-label">Email <span class="text-muted"></span></label>
+                    <input type="email" class="form-control" id="email" value="" disabled>
+                </div> 
             </div>
-            </div>
-            <div class="col-12">
-            <label for="email" class="form-label">Email <span class="text-muted"></span></label>
-            <input type="email" class="form-control" id="email" value="" disabled>
-            <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-            </div>
-            </div> 
         </div>
 
         <hr class="my-4">
-        <form id="carHaulingForm" action="" method="POST">
-        @csrf
+        
         <div class="row g-3">
             <div class="col-md-6">
             <h4 class="mb-3">Pickup Address</h4>
@@ -155,13 +149,10 @@
             </div>
             
         </div>
-        <div class="d-flex align-items-end justify-content-end mt-4">
-            <button class="w-10 btn btn-primary btn-md" type="button" id="addVehicleBtn">Add another vehicle</button>
-        </div>
         <hr class="my-4">
 
         <h4 class="mb-3">Delivery Detail</h4>
-            <div class="row g-3">
+        <div class="row g-3">
             <div class="col-12">
                 <label class="form-label">Delivery Time</label>
                 <div class="input-group has-validation">
@@ -178,7 +169,44 @@
                 Name on card is required
                 </div>
             </div>
+        </div>
+
+        <hr class="my-4">
+        <form id="" action="{{route('adminOrderDetail.post', ['load_id' => $order->load_id ]) }}" method="POST">
+        @csrf
+        <h4 class="mb-3">Price Quote
+            @if ($order->price_quote_status == 0)
+            <span class="badge bg-secondary">Not Sent</span>
+            @elseif ($order->price_quote_status == 1)
+            <span class="badge bg-primary">Sent</span>
+            @elseif ($order->price_quote_status == 2)
+            <span class="badge bg-warning text-dark">Accepted</span>
+            @elseif ($order->price_quote_status == 3)
+            <span class="badge bg-danger">Rejected</span>
+            @elseif ($order->price_quote_status == 4)
+            <span class="badge bg-dark">Expired</span>
+            @else
+            <span class="badge bg-dark">Unknown Status</span>
+            @endif
+        </h4>
+        <div class="row g-3">
+            <div class="col-12">
+                <label class="form-label">Quote Amount</label>
+                <div class="input-group has-validation">
+                {{-- <input type="text" class="form-control" id="" value=""> --}}
+                <span class="input-group-addon input-group-text"><span class="fa fa-calendar"></span></span>
+                <input type="text" class="form-control" id="" name="price_quote"/>
+                </div>
             </div>
+            <div class="col-12">
+                <label for="cc-name" class="form-label">Comment for user </label>
+                <textarea class="form-control" id="" name="customer_instruction" rows="3"></textarea>
+                <small class="text-muted">Provide details such as building description, a nearby landmark, or other navigation Instructions.</small>
+                <div class="invalid-feedback">
+                Name on card is required
+                </div>
+            </div>
+        </div>
 
         <hr class="my-4">
 
