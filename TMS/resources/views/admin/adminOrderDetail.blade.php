@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-12">
                     <label for="email" class="form-label">Email <span class="text-muted"></span></label>
-                    <input type="email" class="form-control" id="email" value="" disabled>
+                    <input type="email" class="form-control" id="email" value="{{ $order->email }}" disabled>
                 </div> 
             </div>
         </div>
@@ -28,30 +28,28 @@
 
             <div class="col-md-12">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" id="" name="origin_address" placeholder="1234 Main St">
+                <input type="text" class="form-control" id="" name="origin_address" value="{{ $order->origin_address }}" disabled>
                 <div class="invalid-feedback">
                 Please enter your shipping address.
                 </div>
             </div>
             <div class="col-md-12 mt-2">
                 <label for="address2" class="form-label">City <span class="text-muted"></span></label>
-                <input type="text" class="form-control" name="origin_city" placeholder="equin park">
+                <input type="text" class="form-control" name="origin_city" value="{{ $order->origin_city }}" disabled>
             </div>
 
             <div class="row mt-2">
                 <div class="col-md-6 ">
                 <label for="state" class="form-label">State</label>
-                <select class="form-select" id="" name="origin_state" required>
-                    <option value="">Choose...</option>
-                    <option>California</option>
-                </select>
+                <input type="text" class="form-control" id="" name="origin_zipcode" placeholder="" value="{{ $order->origin_state }}" disabled>
+                
                 <div class="invalid-feedback">
                     Please provide a valid state.
                 </div>
                 </div>
                 <div class="col-md-6">
                 <label for="zip" class="form-label">Zip</label>
-                <input type="text" class="form-control" id="" name="origin_zipcode" placeholder="">
+                <input type="text" class="form-control" id="" name="origin_zipcode" placeholder="" value="{{ $order->origin_zipcode }}" disabled>
                 <div class="invalid-feedback">
                     Zip code required.
                 </div>
@@ -60,7 +58,7 @@
 
             <div class="col-md-12 mt-3">
                 <label for="address2" class="form-label">Pickup Phone Number <span class="text-muted"></span></label>
-                <input type="text" class="form-control" name="origin_phone" placeholder="">
+                <input type="text" class="form-control" name="origin_phone" placeholder="" value="{{ $order->origin_phone }}" disabled>
             </div>
             </div>
             
@@ -68,30 +66,27 @@
             <h4 class="mb-3">Destination Address</h4>
             <div class="col-md-12">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" id="address" name="destination_address" placeholder="1234 Main St">
+                <input type="text" class="form-control" id="address" name="destination_address" value="{{ $order->destination_address }}" disabled>
                 <div class="invalid-feedback">
                 Please enter your shipping address.
                 </div>
             </div>
             <div class="col-md-12 mt-2">
                 <label for="address2" class="form-label">City <span class="text-muted"></span></label>
-                <input type="text" class="form-control" id="address2" name="destination_city" placeholder="equin park">
+                <input type="text" class="form-control" id="address2" name="destination_city" value="{{ $order->destination_city }}" disabled>
             </div>
 
             <div class="row">
                 <div class="col-md-6 mt-2">
                 <label for="state" class="form-label">State</label>
-                <select class="form-select" id="state" name="destination_state">
-                    <option value="">Choose...</option>
-                    <option>California</option>
-                </select>
+                <input type="text" class="form-control" id="" name="destination_state" placeholder="" value="{{ $order->destination_state }}" disabled>
                 <div class="invalid-feedback">
                     Please provide a valid state.
                 </div>
                 </div>
                 <div class="col-md-6 mt-2">
                 <label for="zip" class="form-label">Zip</label>
-                <input type="text" class="form-control" name="destination_zipcode" id="zip" placeholder="">
+                <input type="text" class="form-control" name="destination_zipcode" id="zip" value="{{ $order->destination_zipcode }}" disabled>
                 <div class="invalid-feedback">
                     Zip code required.
                 </div>
@@ -100,7 +95,7 @@
 
             <div class="col-md-12 mt-3">
                 <label for="address2" class="form-label">Destination Phone Number <span class="text-muted"></span></label>
-                <input type="text" class="form-control" id="address2" name="destination_phone" placeholder="">
+                <input type="text" class="form-control" id="address2" name="destination_phone" value="{{ $order->destination_phone }}" disabled>
             </div>
             </div>
 
@@ -116,35 +111,24 @@
             <div class="col-12">
                 <label class="form-label">Vehicle Maker</label>
                 <div class="input-group has-validation">
-                <input type="text" class="form-control" id="make_0" name="vehicles[0][make]">
+                <input type="text" class="form-control" id="" name="" value="{{ $order->vehicle_maker }}" disabled>
                 </div>
             </div>
             <div class="col-12">
                 <label class="form-label">Vehicle Model <span class="text-muted"></span></label>
-                <input type="text" class="form-control" id="model_0" name="vehicles[0][model]">
+                <input type="text" class="form-control" id="" name="" value="{{ $order->vehicle_model }}" disabled>
             </div> 
             <div class="col-12">
                 <label class="form-label">Vehicle Type <span class="text-muted"></span></label>
-                <select class="form-select" id="type_0" name="vehicles[0][type]">
-                <option value="">Choose...</option>
-                <option value="Sedan">Sedan</option>
-                <option value="SUV">SUV</option>
-                <option value="Hatchback">Hatchback</option>
-                <option value="MPV">MPV</option>
-                <option value="Pickup_Truck">Pickup Truck</option>
-                <option value="Coupe">Coupe</option>
-                <option value="Van">Van</option>
-                <option value="Wagon">Wagon</option>
-                <option value="Limousine">Limousine</option>
-                </select>
+                <input type="text" class="form-control" id="" name="" value="{{ $order->vehicle_type }}" disabled>
             </div>
             <div class="col-12">
                 <label class="form-label">Make Year <span class="text-muted"></span></label>
-                <input type="number" class="form-control datepicker" id="make_year_0" name="vehicles[0][make_year]"/>
+                <input type="number" class="form-control datepicker" id="" name="" value="{{ $order->vehicle_year }}" disabled/>
             </div> 
             <div class="col-12">
                 <label class="form-label">Number Plate <span class="text-muted"></span></label>
-                <input type="text" class="form-control" id="plate_0" name="vehicles[0][plate]" >
+                <input type="text" class="form-control" id="" name="" value="{{ $order->vehicle_plate }}" disabled>
             </div> 
             </div>
             
@@ -158,12 +142,12 @@
                 <div class="input-group has-validation">
                 {{-- <input type="text" class="form-control" id="" value=""> --}}
                 <span class="input-group-addon input-group-text"><span class="fa fa-calendar"></span></span>
-                <input type="text" class="form-control" id="customerpickuptime" name="customer_pickup_time"/>
+                <input type="text" class="form-control" id="customerpickuptime" name="customer_pickup_time" value="{{ $order->customer_pickup_time }}" disabled/>
                 </div>
             </div>
             <div class="col-12">
                 <label for="cc-name" class="form-label">Delivery Instructions </label>
-                <textarea class="form-control" id="" name="customer_instruction" rows="3"></textarea>
+                <textarea class="form-control" id="" name="customer_instruction" rows="3" disabled>{{ $order->customer_instruction }}</textarea>
                 <small class="text-muted">Provide details such as building description, a nearby landmark, or other navigation Instructions.</small>
                 <div class="invalid-feedback">
                 Name on card is required
@@ -206,13 +190,14 @@
                 Name on card is required
                 </div>
             </div>
+
+            <div class="text-center">
+                <button class="w-50 btn btn-primary btn-lg" type="submit">Send Quote</button>
+            </div>
         </div>
 
         <hr class="my-4">
 
-        <div class="text-center">
-            <button class="w-50 btn btn-primary btn-lg" type="submit">Continue</button>
-        </div>
         </form>
     </div>
 

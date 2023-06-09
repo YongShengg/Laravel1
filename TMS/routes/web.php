@@ -31,8 +31,12 @@ Route::get('/adminLogin', [AdminAuthManager::class, 'adminLogin'])->name('adminL
 Route::post('/adminLogin', [AdminAuthManager::class, 'adminLoginPost'])->name('adminLogin.post');
 
 
+// Route::post('/adminOrderRejectPost', [AdminHome::class, 'adminOrderRejectPost'])->name('adminOrderReject.post');
+// Route::post('/adminOrderRejectPost', [AdminHome::class, 'adminOrderRejectPost'])->name('adminOrderRejectPost');
 
+// Route::post('/adminOrderRejectPost', [AdminHome::class, 'adminOrderRejectPost'])->name('adminOrderReject.post');
 
+Route::post('/adminOrderRejectPost', [AdminHome::class, 'adminOrderRejectPost'])->name('adminOrderReject.post');
 
 //check if the user is logged in
 Route::group(['middleware' => 'auth'], function(){
@@ -62,5 +66,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
 
     Route::get('/adminOrderDetail/{load_id}', [AdminHome::class, 'adminOrderDetail'])->name('adminOrderDetail');
     Route::post('/adminOrderDetail/{load_id}', [AdminHome::class, 'adminOrderDetailPost'])->name('adminOrderDetail.post');
+
+    
 });
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
