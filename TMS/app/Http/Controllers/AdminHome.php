@@ -78,30 +78,54 @@ class AdminHome extends Controller
     //     return response()->json(['message' => 'Order rejected successfully']);
     // }
 
-    public function adminOrderRejectPost(Request $request)
+//     public function adminOrderRejectPost(Request $request)
+//     {
+//         // var_dump($request);
+//         // exit();
+//        $orderId = $request->input('orderId');
+
+//         //$orderId = $request()->orderId;
+//     //  dd('orderId:', $orderId);
+//    // var_dump($orderId);
+// //     echo $orderId;
+// //    exit(1);
+    
+//      //echo $orderId;
+//         // dd($orderId);
+//         //exit(1);
+//         // if (!$orderId) {
+//         //     return response()->json(['message' => 'Order ID is missing'], 400);
+//         // }
+
+//         // Retrieve the order from the database
+//         $order = UserOrder::find();
+//         // var_dump($order);
+//         // exit();
+//         // if (!$order) {
+//         //     return response()->json(['message' => 'Order not found'], 404);
+//         // }
+//         // Update the order status to 'Rejected'
+//         $order->where('load_id', $orderId)->update(['progress_status' => '7']);
+        
+
+//         // Return a success response
+//         return response()->json(['message' => 'Order rejected successfully']);
+//     }
+
+    function adminOrderRejectPost(Request $request)
     {
-        // var_dump($request);
-        // exit();
         $orderId = $request->input('orderId');
 
-        //$orderId = $request()->orderId;
-    //  dd('orderId:', $orderId);
-    var_dump($orderId);
-    exit();
-    // echo $orderId;
-        // dd($orderId);
-
-        // if (!$orderId) {
-        //     return response()->json(['message' => 'Order ID is missing'], 400);
-        // }
+        if (!$orderId) {
+            return response()->json(['message' => 'Order ID is missing'], 400);
+        }
 
         // Retrieve the order from the database
-        $order = UserOrder::find($orderId);
-        var_dump($order);
-        exit();
-        // if (!$order) {
-        //     return response()->json(['message' => 'Order not found'], 404);
-        // }
+        $order = UserOrder::where('load_id', $orderId)->first();
+
+        if (!$order) {
+            return response()->json(['message' => 'Order not found'], 404);
+        }
 
         // Update the order status to 'Rejected'
         $order->update(['progress_status' => '7']);

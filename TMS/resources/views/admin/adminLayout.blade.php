@@ -72,6 +72,7 @@
                     },
                     success: function(response) {
                         // Handle the success response
+                        console.log(response);
                         alert('Order ' + orderId + ' rejected successfully');
                         // Refresh the page or update the UI as needed
                     },
