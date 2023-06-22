@@ -13,10 +13,10 @@
             <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
             </svg> Dashboard</a></li>
         <li class="nav-title">Theme</li>
-        <li class="nav-item"><a class="nav-link" href="colors.html">
+        <li class="nav-item"><a class="nav-link" href="{{route('adminOrders')}}">
             <svg class="nav-icon">
             <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-drop"></use>
-            </svg> Colors</a></li>
+            </svg> All Order</a></li>
         <li class="nav-item"><a class="nav-link" href="{{route('adminOrderQuote')}}">
             <svg class="nav-icon">
             <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>

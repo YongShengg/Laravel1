@@ -112,6 +112,50 @@ class AdminHome extends Controller
 //         return response()->json(['message' => 'Order rejected successfully']);
 //     }
 
+    function adminOrders(Request $request){
+
+        // Fetch the new orders from the database
+        $newOrders = UserOrder::join('users', 'users.id', 'users_order.user_id') // Assuming you have a 'status' column to track the order status
+        ->select('users_order.load_id', 'users.name', 'users_order.created_at', 'users_order.progress_status', 'users_order.payment_progress_status', 'users_order.price_quote_status')
+        ->whereIn('users_order.progress_status', [0,1,2,3,4,6,7])
+        ->orderBy('users_order.created_at', 'desc')
+        ->paginate(20);
+        // var_dump($newOrders);
+        // exit();
+        // Transform the orders as needed (e.g., extract required fields)
+        $orders = $newOrders->map(function ($order) {
+            return [
+                'load_id' => $order->load_id,
+                'name' => $order->name,
+                'progress_status' => $order->progress_status,
+                'payment_progress_status' => $order->payment_progress_status,
+                'price_quote_status' => $order->price_quote_status,
+                'created_at' => $order->created_at->format('Y-m-d H:i:s'),
+                
+                // Add more fields as needed
+            ];
+        });
+        // var_dump($orders);
+        // exit();
+        if ($request->expectsJson()) {
+            // If the request expects JSON response, return JSON with pagination
+            $pagination = [
+                'current_page' => $newOrders->currentPage(),
+                'last_page' => $newOrders->lastPage(),
+                'prev_page' => $newOrders->previousPageUrl(),
+                'next_page' => $newOrders->nextPageUrl(),
+            ];
+    
+            return response()->json(['orders' => $orders, 'pagination' => $pagination]);
+        } else {
+            // If the request expects HTML response, return the view
+            return view('admin/adminOrders', ['orders' => $orders]);
+        }
+        // // Return the orders as JSON response
+        // return response()->json(['orders' => $orders]);
+        // return view('admin/adminOrders');
+    }
+
     function adminOrderRejectPost(Request $request)
     {
         $orderId = $request->input('orderId');

@@ -137,6 +137,11 @@ class UserHome extends Controller
         ->orderBy('created_at', 'desc')->paginate(10);
         return view('user/userHistory', ['data'=> $userOrderData]);
     }
+
+    function userPayment(){
+
+        return view('user/userPayment');
+    }
     
     // function userBookingPost(Request $request, $id){
         

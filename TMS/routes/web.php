@@ -36,6 +36,7 @@ Route::post('/adminLogin', [AdminAuthManager::class, 'adminLoginPost'])->name('a
 
 // Route::post('/adminOrderRejectPost', [AdminHome::class, 'adminOrderRejectPost'])->name('adminOrderReject.post');
 
+
 Route::post('adminOrderRejectPost', [AdminHome::class, 'adminOrderRejectPost'])->name('adminOrderReject.post');
 
 //check if the user is logged in
@@ -52,6 +53,9 @@ Route::group(['middleware' => 'auth'], function(){
     
     Route::get('/userHistory', [UserHome::class, 'userHistory'])->name('userHistory');
     Route::post('/userHistory/{id}', [UserHome::class, 'userHistoryPost'])->name('userHistory.post');
+
+    Route::get('/userPayment', [UserHome::class, 'userPayment'])->name('userPayment');
+    Route::post('/userPayment/{id}', [UserHome::class, 'userPaymentPost'])->name('userPayment.post');
 });
 
 Route::group(['middleware' => ['auth:admin']], function () {
@@ -67,6 +71,8 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/adminOrderDetail/{load_id}', [AdminHome::class, 'adminOrderDetail'])->name('adminOrderDetail');
     Route::post('/adminOrderDetail/{load_id}', [AdminHome::class, 'adminOrderDetailPost'])->name('adminOrderDetail.post');
 
+    Route::get('/adminOrders', [AdminHome::class, 'adminOrders'])->name('adminOrders');
+    // Route::get('/adminOrders', [AdminHome::class, 'adminOrdersPost'])->name('adminOrdersPost.post');
 });
 
 
