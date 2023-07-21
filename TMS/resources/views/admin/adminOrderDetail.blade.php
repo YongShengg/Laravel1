@@ -155,6 +155,7 @@
             </div>
         </div>
 
+        @if ($order->price_quote_status == 0)
         <hr class="my-4">
         <form id="" action="{{route('adminOrderDetail.post', ['load_id' => $order->load_id ]) }}" method="POST">
         @csrf
@@ -173,6 +174,7 @@
             <span class="badge bg-dark">Unknown Status</span>
             @endif
         </h4>
+        
         <div class="row g-3">
             <div class="col-12">
                 <label class="form-label">Quote Amount</label>
@@ -195,6 +197,67 @@
                 <button class="w-50 btn btn-primary btn-lg" type="submit">Send Quote</button>
             </div>
         </div>
+        @elseif ($order && in_array($order->price_quote_status, [1, 2, 3, 4]))
+        <hr class="my-4">
+        <form id="" action="{{route('adminOrderDetail.post', ['load_id' => $order->load_id ]) }}" method="POST">
+        @csrf
+        <h4 class="mb-3">Price Quote
+            @if ($order->price_quote_status == 0)
+            <span class="badge bg-secondary">Not Sent</span>
+            @elseif ($order->price_quote_status == 1)
+            <span class="badge bg-primary">Sent</span>
+            @elseif ($order->price_quote_status == 2)
+            <span class="badge bg-warning text-dark">Accepted</span>
+            @elseif ($order->price_quote_status == 3)
+            <span class="badge bg-danger">Rejected</span>
+            @elseif ($order->price_quote_status == 4)
+            <span class="badge bg-dark">Expired</span>
+            @else
+            <span class="badge bg-dark">Unknown Status</span>
+            @endif
+        </h4>
+        
+        <div class="row g-3">
+            <div class="col-12">
+                <label class="form-label">Quote Amount</label>
+                <div class="input-group has-validation">
+                {{-- <input type="text" class="form-control" id="" value=""> --}}
+                <span class="input-group-addon input-group-text"><span class="fa fa-calendar"></span></span>
+                <input type="text" class="form-control" id="" name="price_quote" value="{{ $order->price_quote }}" disabled/>
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="cc-name" class="form-label">Comment for user </label>
+                <textarea class="form-control" id="" name="customer_instruction" rows="3"></textarea>
+                <small class="text-muted">Provide details such as building description, a nearby landmark, or other navigation Instructions.</small>
+                <div class="invalid-feedback">
+                Name on card is required
+                </div>
+            </div>
+
+            {{-- <div class="text-center">
+                <button class="w-50 btn btn-primary btn-lg" type="submit">Send Quote123</button>
+            </div> --}}
+        </div>
+
+        <hr class="my-4">
+
+        <h4 class="mb-3">Assign Driver</h4>
+        <div class="row g-3">
+            <div class="col-12">
+                <label class="form-label">Driver Name</label>
+                <div class="input-group has-validation">
+                {{-- <input type="text" class="form-control" id="" value=""> --}}
+                <input type="text" class="form-control" id="customerpickuptime" name="customer_pickup_time" value="" />
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="w-50 btn btn-primary btn-lg" type="submit">Assign Driver</button>
+            </div>
+        </div>
+
+        @endif
 
         <hr class="my-4">
 
